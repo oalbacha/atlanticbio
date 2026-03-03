@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.85rem;
+  --background: oklch(0.11 0.01 220);
+  --foreground: oklch(0.95 0.01 115);
+  --card: oklch(0.17 0.012 220);
+  --card-foreground: oklch(0.94 0.01 115);
+  --popover: oklch(0.18 0.012 220);
+  --popover-foreground: oklch(0.95 0.01 115);
+  --primary: oklch(0.73 0.11 145);
+  --primary-foreground: oklch(0.17 0.012 220);
+  --secondary: oklch(0.24 0.012 220);
+  --secondary-foreground: oklch(0.95 0.01 115);
+  --muted: oklch(0.2 0.01 220);
+  --muted-foreground: oklch(0.76 0.02 210);
+  --accent: oklch(0.24 0.015 180);
+  --accent-foreground: oklch(0.96 0.01 115);
+  --destructive: oklch(0.64 0.19 30);
+  --border: oklch(0.32 0.01 210 / 70%);
+  --input: oklch(0.3 0.01 210 / 90%);
+  --ring: oklch(0.7 0.1 145 / 70%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 14% 12%, rgba(102, 170, 124, 0.18), transparent 34%),
+      radial-gradient(circle at 88% 20%, rgba(92, 119, 169, 0.12), transparent 28%),
+      linear-gradient(180deg, rgba(9, 14, 18, 0.95), rgba(9, 14, 18, 1));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+.page-texture {
+  background-image:
+    linear-gradient(transparent 97%, rgba(255, 255, 255, 0.03) 98%),
+    linear-gradient(90deg, transparent 97%, rgba(255, 255, 255, 0.02) 98%);
+  background-size: 26px 26px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
