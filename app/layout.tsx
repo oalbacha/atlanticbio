@@ -39,8 +39,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${heading.variable} ${body.variable} ${mono.variable} bg-background font-body text-foreground antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${heading.variable} ${body.variable} ${mono.variable} bg-background font-body text-foreground antialiased`}
+      >
         <div className="page-texture pointer-events-none fixed inset-0 -z-10" aria-hidden="true" />
         <SiteHeader />
         <main className="mx-auto w-full max-w-7xl px-6 py-8 pb-16 lg:px-8 lg:py-10">{children}</main>

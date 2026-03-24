@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -21,8 +21,14 @@ const initialState: FormState = {
 }
 
 export function InvestorForm() {
-  const [startedAt, setStartedAt] = useState(() => Date.now())
+  const startedAtRef = useRef<HTMLInputElement>(null)
   const [state, setState] = useState<FormState>(initialState)
+
+  useEffect(() => {
+    if (startedAtRef.current) {
+      startedAtRef.current.value = String(Date.now())
+    }
+  }, [])
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -56,7 +62,9 @@ export function InvestorForm() {
 
       setState({ status: "success", message: data.message ?? "Inquiry sent.", fieldErrors: {} })
       form.reset()
-      setStartedAt(Date.now())
+      if (startedAtRef.current) {
+        startedAtRef.current.value = String(Date.now())
+      }
     } catch {
       setState({
         status: "error",
@@ -73,7 +81,7 @@ export function InvestorForm() {
       </CardHeader>
       <CardContent>
         <form className="space-y-5" onSubmit={onSubmit} noValidate>
-          <input type="hidden" name="startedAt" value={startedAt} />
+          <input ref={startedAtRef} type="hidden" name="startedAt" defaultValue="" />
           <div className="hidden" aria-hidden="true">
             <Label htmlFor="website-investors">Website</Label>
             <Input id="website-investors" name="website" tabIndex={-1} autoComplete="off" />

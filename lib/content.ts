@@ -5,9 +5,9 @@ import {
   type SpecItem,
   type TimelinePhase,
   type ValueCard,
-} from "@/lib/types"
+} from "@/lib/types";
 
-export const siteName = "Atlantic BioGraphite"
+export const siteName = "Atlantic BioGraphite";
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
@@ -18,7 +18,7 @@ export const navItems: NavItem[] = [
   { label: "Biographite", href: "/biographite" },
   { label: "Investors", href: "/investors" },
   { label: "Contact", href: "/contact" },
-]
+];
 
 export const homeMetrics: MetricItem[] = [
   {
@@ -41,7 +41,30 @@ export const homeMetrics: MetricItem[] = [
     label: "First-mover window to establish regional bio-graphite capacity",
     sourceNote: "Atlantic BioGraphite plan, February 2026",
   },
-]
+];
+
+export const homeOpportunityMetrics: MetricItem[] = [
+  {
+    value: "Proven",
+    label: "Technology",
+    sourceNote: "",
+  },
+  {
+    value: "Aligned",
+    label: "Policy",
+    sourceNote: "",
+  },
+  {
+    value: "Available",
+    label: "Feedstock",
+    sourceNote: "",
+  },
+  {
+    value: "0",
+    label: "Competition",
+    sourceNote: "",
+  },
+];
 
 export const roadmap: TimelinePhase[] = [
   {
@@ -65,25 +88,22 @@ export const roadmap: TimelinePhase[] = [
     outcome:
       "Scale to long-term North American contracts with carbon, traceability, and regional resilience advantages.",
   },
-]
+];
 
 export const storySections = [
   {
     title: "A battery transition with a materials bottleneck",
-    copy:
-      "As of early 2026, EV growth is constrained by a graphite supply chain that is concentrated, carbon-intensive, and geopolitically exposed. Atlantic BioGraphite starts from this contradiction: clean mobility needs cleaner anode materials.",
+    copy: "As of early 2026, EV growth is constrained by a graphite supply chain that is concentrated, carbon-intensive, and geopolitically exposed. Atlantic BioGraphite starts from this contradiction: clean mobility needs cleaner anode materials.",
   },
   {
     title: "Why New Brunswick",
-    copy:
-      "New Brunswick has certified forestry residues, established industrial logistics, and practical proximity to the Eastern North American battery corridor. The opportunity is to convert local byproducts into high-value critical material.",
+    copy: "New Brunswick has certified forestry residues, established industrial logistics, and practical proximity to the Eastern North American battery corridor. The opportunity is to convert local byproducts into high-value critical material.",
   },
   {
     title: "Why now",
-    copy:
-      "Policy and market timing are aligned. The EU Battery Regulation is tightening footprint disclosure. U.S. IRA domestic-content thresholds are rising toward 2029. Customers need traceable, lower-carbon graphite options now.",
+    copy: "Policy and market timing are aligned. The EU Battery Regulation is tightening footprint disclosure. U.S. IRA domestic-content thresholds are rising toward 2029. Customers need traceable, lower-carbon graphite options now.",
   },
-]
+];
 
 export const stakeholderBenefits: ValueCard[] = [
   {
@@ -106,13 +126,13 @@ export const stakeholderBenefits: ValueCard[] = [
     description:
       "Designed for early collaboration with Mi'kmaq and Wolastoqey communities as strategic partners.",
   },
-]
+];
 
 export const missionStatement =
-  "Transform sustainably sourced forestry residues into battery-grade graphite for lower-carbon, traceable, regionally produced critical materials."
+  "Transform sustainably sourced forestry residues into battery-grade graphite for lower-carbon, traceable, regionally produced critical materials.";
 
 export const visionStatement =
-  "Establish Atlantic Canada as North America's leading producer of carbon-negative battery materials by proving that critical materials can be environmentally regenerative, economically durable, and socially beneficial."
+  "Establish Atlantic Canada as North America's leading producer of carbon-negative battery materials by proving that critical materials can be environmentally regenerative, economically durable, and socially beneficial.";
 
 export const valueCards: ValueCard[] = [
   {
@@ -140,7 +160,7 @@ export const valueCards: ValueCard[] = [
     description:
       "Making decisions against multi-decade resource cycles and supply agreements rather than short-term signals.",
   },
-]
+];
 
 export const sustainabilityHighlights: InvestorHighlight[] = [
   {
@@ -153,13 +173,15 @@ export const sustainabilityHighlights: InvestorHighlight[] = [
   },
   {
     title: "Transparent reporting",
-    detail: "Annual sustainability reporting and third-party lifecycle verification commitment.",
+    detail:
+      "Annual sustainability reporting and third-party lifecycle verification commitment.",
   },
   {
     title: "Workforce development",
-    detail: "Structured local training partnerships and apprenticeship pipelines.",
+    detail:
+      "Structured local training partnerships and apprenticeship pipelines.",
   },
-]
+];
 
 export const productSpecs: SpecItem[] = [
   {
@@ -170,7 +192,8 @@ export const productSpecs: SpecItem[] = [
   {
     parameter: "Particle Distribution",
     target: "D50: 15-20 um",
-    rationale: "Supports packing density and predictable electrochemical behavior.",
+    rationale:
+      "Supports packing density and predictable electrochemical behavior.",
   },
   {
     parameter: "Specific Capacity",
@@ -185,14 +208,15 @@ export const productSpecs: SpecItem[] = [
   {
     parameter: "Graphitization Degree",
     target: ">=80% (>=90% premium target)",
-    rationale: "Aligned with anode-grade definitions and cycle-life expectations.",
+    rationale:
+      "Aligned with anode-grade definitions and cycle-life expectations.",
   },
   {
     parameter: "Critical Impurities",
     target: "Fe/Al <50 ppm, Ni/Cu/Co <20 ppm",
     rationale: "Protects battery safety and long-term performance stability.",
   },
-]
+];
 
 export const investorHighlights: InvestorHighlight[] = [
   {
@@ -215,26 +239,30 @@ export const investorHighlights: InvestorHighlight[] = [
     detail:
       "Formal go/no-go gates in Q2 and Q4 to protect capital and keep phase transitions evidence-based.",
   },
-]
+];
 
 export const investorRisks: InvestorHighlight[] = [
   {
     title: "Technical qualification risk",
-    detail: "Mitigated through staged testing, multiple feedstocks, and independent characterization.",
+    detail:
+      "Mitigated through staged testing, multiple feedstocks, and independent characterization.",
   },
   {
     title: "Adoption timeline risk",
-    detail: "Managed with early customer engagement and qualification-aligned pilot sampling.",
+    detail:
+      "Managed with early customer engagement and qualification-aligned pilot sampling.",
   },
   {
     title: "Funding timing risk",
-    detail: "Addressed by parallel public-private pathways and milestone-based de-risking.",
+    detail:
+      "Addressed by parallel public-private pathways and milestone-based de-risking.",
   },
   {
     title: "Competitive timing risk",
-    detail: "Countered by regional focus and speed to credible feasibility outputs.",
+    detail:
+      "Countered by regional focus and speed to credible feasibility outputs.",
   },
-]
+];
 
 export const footerText =
-  "Atlantic BioGraphite develops a lower-carbon pathway for battery-grade graphite using sustainably sourced New Brunswick residues."
+  "Atlantic BioGraphite develops a lower-carbon pathway for battery-grade graphite using sustainably sourced New Brunswick residues.";

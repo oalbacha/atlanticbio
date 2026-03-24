@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
-  eyebrow?: string
-  title: string
-  intro?: string
-  className?: string
-}
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  className?: string;
+};
 
 export function SectionHeading({
   eyebrow,
@@ -20,12 +20,14 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="font-heading text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
+      <h2 className="font-heading text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl capitalize">
         {title}
       </h2>
       {intro ? (
-        <p className="text-base leading-7 text-muted-foreground sm:text-lg">{intro}</p>
+        <p className="text-base leading-7 text-muted-foreground sm:text-lg">
+          {intro}
+        </p>
       ) : null}
     </header>
-  )
+  );
 }
