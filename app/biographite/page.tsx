@@ -65,16 +65,22 @@ export default function BiographitePage() {
       </section>
 
       <section className="space-y-7">
-        <SectionHeading
-          eyebrow="Differentiation"
-          title="Core value drivers for anode customers"
-          intro="The strategy is to compete on performance + risk reduction, not on commodity positioning alone."
-        />
+        <div className="max-w-3xl">
+          <p className="text-base leading-7 text-muted-foreground sm:text-lg">
+            We compete on performance + risk reduction, not on commodity positioning alone.
+          </p>
+        </div>
         <div className="grid gap-5 md:grid-cols-3">
           {valueDrivers.map((driver) => (
-            <article key={driver.title} className="rounded-2xl border border-border/80 bg-card/70 p-6">
+            <article
+              key={driver.title}
+              className="relative rounded-2xl border border-border/80 bg-card/70 p-6"
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
               <h2 className="text-2xl">{driver.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{driver.detail}</p>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                {driver.detail}
+              </p>
             </article>
           ))}
         </div>

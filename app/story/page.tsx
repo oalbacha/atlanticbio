@@ -1,14 +1,21 @@
-import { type Metadata } from "next"
+import { type Metadata } from "next";
 
-import { PageHero } from "@/components/sections/page-hero"
-import { SectionHeading } from "@/components/sections/section-heading"
-import { Card, CardContent } from "@/components/ui/card"
-import { stakeholderBenefits, storySections } from "@/lib/content"
+import { PageHero } from "@/components/sections/page-hero";
+import { SectionHeading } from "@/components/sections/section-heading";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  homeOpportunityMetrics,
+  roadmap,
+  stakeholderBenefits,
+  storySections,
+} from "@/lib/content";
+import { Roadmap } from "@/components/sections/roadmap";
+import { MetricGrid } from "@/components/sections/metric-grid";
 
 export const metadata: Metadata = {
   title: "Story",
   description: "Origin story and strategic timing for Atlantic BioGraphite.",
-}
+};
 
 export default function StoryPage() {
   return (
@@ -24,10 +31,24 @@ export default function StoryPage() {
           <Card key={section.title} className="border-border/80 bg-card/70">
             <CardContent className="space-y-3 p-6">
               <h2 className="text-2xl">{section.title}</h2>
-              <p className="text-sm leading-7 text-muted-foreground">{section.copy}</p>
+              <p className="text-sm leading-7 text-muted-foreground">
+                {section.copy}
+              </p>
             </CardContent>
           </Card>
         ))}
+      </section>
+
+      <section className="space-y-7">
+        <SectionHeading
+          title="Perfect timing momentum"
+          intro="Atlantic BioGraphite turns a regional byproduct stream into battery-grade material with lower carbon intensity and stronger supply security for North American customers."
+        />
+        <MetricGrid metrics={homeOpportunityMetrics} />
+      </section>
+
+      <section className="space-y-7">
+        <Roadmap phases={roadmap} />
       </section>
 
       <section className="space-y-7">
@@ -38,13 +59,18 @@ export default function StoryPage() {
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {stakeholderBenefits.map((benefit) => (
-            <article key={benefit.title} className="rounded-2xl border border-border/80 bg-card/70 p-6">
+            <article
+              key={benefit.title}
+              className="rounded-2xl border border-border/80 bg-card/70 p-6"
+            >
               <h3 className="text-xl text-foreground">{benefit.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{benefit.description}</p>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                {benefit.description}
+              </p>
             </article>
           ))}
         </div>
       </section>
     </div>
-  )
+  );
 }

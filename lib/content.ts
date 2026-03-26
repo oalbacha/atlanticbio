@@ -66,6 +66,30 @@ export const homeOpportunityMetrics: MetricItem[] = [
   },
 ];
 
+export const atlanticCanadaMetrics: MetricItem[] = [
+  {
+    value: "Feedstock",
+    label:
+      "91 Sawmill operations identified across Atlantic Canada. 100% FSC/SFI-aligned sourcing from project inception target.",
+    sourceNote: "",
+  },
+  {
+    value: "4",
+    label: "Major deep-water ports with Atlantic shipping access",
+    sourceNote: "",
+  },
+  {
+    value: "130+yr",
+    label: "Regional forestry and industrial operations history",
+    sourceNote: "",
+  },
+  {
+    value: "300km",
+    label: "Feedstock expansion radius across the Atlantic to Maine, USA",
+    sourceNote: "",
+  },
+];
+
 export const roadmap: TimelinePhase[] = [
   {
     phase: "Phase 1",

@@ -14,7 +14,7 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <header className={cn("max-w-3xl space-y-4", className)}>
+    <header className={cn("w-full space-y-4", className)}>
       {eyebrow ? (
         <p className="text-xs font-semibold tracking-[0.22em] text-primary uppercase">
           {eyebrow}
