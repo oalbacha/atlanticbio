@@ -85,7 +85,7 @@ export const atlanticCanadaMetrics: MetricItem[] = [
   },
   {
     value: "300km",
-    label: "Feedstock expansion radius across the Atlantic to Maine, USA",
+    label: "Expansion radius across the Atlantic to Maine, USA",
     sourceNote: "",
   },
 ];

@@ -15,11 +15,20 @@ describe("SiteHeader", () => {
     mockPathname.mockReturnValue("/mission")
   })
 
-  it("highlights active desktop nav link", () => {
+  it("highlights active Story dropdown trigger", () => {
     render(<SiteHeader />)
 
-    const activeLink = screen.getByRole("link", { name: "Mission" })
-    expect(activeLink).toHaveAttribute("aria-current", "page")
+    const storyLinks = screen.getAllByRole("link", { name: "Story" })
+    expect(
+      storyLinks.some((link) => link.getAttribute("aria-current") === "page")
+    ).toBe(true)
+  })
+
+  it("includes Mission and Culture inside the Story dropdown", () => {
+    render(<SiteHeader />)
+
+    expect(screen.getByRole("menuitem", { name: "Mission" })).toBeInTheDocument()
+    expect(screen.getByRole("menuitem", { name: "Culture" })).toBeInTheDocument()
   })
 
   it("opens and closes mobile dialog menu", async () => {
