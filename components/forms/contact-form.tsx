@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { cn } from "@/lib/utils"
+import { ContactFormSchema } from "@/lib/validation"
 
 declare global {
   interface Window {
@@ -49,6 +51,56 @@ export function ContactForm() {
       startedAtRef.current.value = String(Date.now())
     }
   }, [])
+
+  function getFieldError(name: string) {
+    return state.fieldErrors[name]?.[0]
+  }
+
+  function validateClientPayload(form: HTMLFormElement) {
+    const result = ContactFormSchema.safeParse(Object.fromEntries(new FormData(form).entries()))
+
+    if (result.success) {
+      return true
+    }
+
+    setState({
+      status: "error",
+      message: "Please review the highlighted fields.",
+      fieldErrors: result.error.flatten().fieldErrors,
+    })
+
+    return false
+  }
+
+  function onFieldChange(event: React.FormEvent<HTMLFormElement>) {
+    const target = event.target
+
+    if (
+      !(target instanceof HTMLInputElement) &&
+      !(target instanceof HTMLTextAreaElement) &&
+      !(target instanceof HTMLSelectElement)
+    ) {
+      return
+    }
+
+    if (!state.fieldErrors[target.name]) {
+      return
+    }
+
+    setState((current) => {
+      if (!current.fieldErrors[target.name]) {
+        return current
+      }
+
+      const fieldErrors = { ...current.fieldErrors }
+      delete fieldErrors[target.name]
+
+      return {
+        ...current,
+        fieldErrors,
+      }
+    })
+  }
 
   async function submitForm(form: HTMLFormElement, recaptchaToken?: string) {
     const formData = new FormData(form)
@@ -101,6 +153,10 @@ export function ContactForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.currentTarget
+
+    if (!validateClientPayload(form)) {
+      return
+    }
 
     if (skipRecaptcha) {
       await submitForm(form, "test-recaptcha-token")
@@ -156,7 +212,7 @@ export function ContactForm() {
             onReady={() => setIsRecaptchaReady(true)}
           />
         ) : null}
-        <form className="space-y-5" onSubmit={onSubmit} noValidate>
+        <form className="space-y-5" onSubmit={onSubmit} onChange={onFieldChange} noValidate>
           <input ref={startedAtRef} type="hidden" name="startedAt" defaultValue="" />
           <div className="hidden" aria-hidden="true">
             <Label htmlFor="website">Website</Label>
@@ -166,8 +222,8 @@ export function ContactForm() {
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
-              <Input id="name" name="name" aria-invalid={Boolean(state.fieldErrors.name?.length)} required />
-              {state.fieldErrors.name ? <p className="text-xs text-destructive">{state.fieldErrors.name[0]}</p> : null}
+              <Input id="name" name="name" aria-invalid={Boolean(getFieldError("name"))} required />
+              {getFieldError("name") ? <p className="text-xs text-destructive">{getFieldError("name")}</p> : null}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Work Email</Label>
@@ -175,17 +231,17 @@ export function ContactForm() {
                 id="email"
                 name="email"
                 type="email"
-                aria-invalid={Boolean(state.fieldErrors.email?.length)}
+                aria-invalid={Boolean(getFieldError("email"))}
                 required
               />
-              {state.fieldErrors.email ? <p className="text-xs text-destructive">{state.fieldErrors.email[0]}</p> : null}
+              {getFieldError("email") ? <p className="text-xs text-destructive">{getFieldError("email")}</p> : null}
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="company">Company</Label>
-            <Input id="company" name="company" aria-invalid={Boolean(state.fieldErrors.company?.length)} required />
-            {state.fieldErrors.company ? <p className="text-xs text-destructive">{state.fieldErrors.company[0]}</p> : null}
+            <Input id="company" name="company" aria-invalid={Boolean(getFieldError("company"))} required />
+            {getFieldError("company") ? <p className="text-xs text-destructive">{getFieldError("company")}</p> : null}
           </div>
 
           <div className="space-y-2">
@@ -193,7 +249,12 @@ export function ContactForm() {
             <select
               id="inquiryType"
               name="inquiryType"
-              className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
+              aria-invalid={Boolean(getFieldError("inquiryType"))}
+              className={cn(
+                "flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm outline-none transition-[color,box-shadow]",
+                "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                getFieldError("inquiryType") && "border-destructive ring-[3px] ring-destructive/20"
+              )}
               defaultValue="General"
             >
               <option>General</option>
@@ -201,20 +262,23 @@ export function ContactForm() {
               <option>Media</option>
               <option>Other</option>
             </select>
+            {getFieldError("inquiryType") ? (
+              <p className="text-xs text-destructive">{getFieldError("inquiryType")}</p>
+            ) : null}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="message">Message</Label>
-            <Textarea id="message" name="message" rows={6} aria-invalid={Boolean(state.fieldErrors.message?.length)} required />
-            {state.fieldErrors.message ? (
-              <p className="text-xs text-destructive">{state.fieldErrors.message[0]}</p>
+            <Textarea id="message" name="message" rows={6} aria-invalid={Boolean(getFieldError("message"))} required />
+            {getFieldError("message") ? (
+              <p className="text-xs text-destructive">{getFieldError("message")}</p>
             ) : (
               <p className="text-xs text-muted-foreground">Please include context, timeline, and intended outcomes.</p>
             )}
           </div>
 
-          {state.fieldErrors.recaptchaToken ? (
-            <p className="text-xs text-destructive">{state.fieldErrors.recaptchaToken[0]}</p>
+          {getFieldError("recaptchaToken") ? (
+            <p className="text-xs text-destructive">{getFieldError("recaptchaToken")}</p>
           ) : null}
 
           <Button className="w-full sm:w-auto" size="lg" disabled={state.status === "submitting"}>
