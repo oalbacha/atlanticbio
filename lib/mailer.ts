@@ -27,11 +27,15 @@ export async function sendInquiryEmail({
 
   const resend = new Resend(apiKey)
 
-  await resend.emails.send({
+  const result = await resend.emails.send({
     from,
     to,
     replyTo,
     subject,
     text,
   })
+
+  if (result.error) {
+    throw new Error(`Resend email send failed: ${result.error.message}`)
+  }
 }

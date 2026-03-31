@@ -133,7 +133,9 @@ export async function POST(request: Request): Promise<Response> {
       } satisfies ApiSuccess,
       { status: 200 }
     )
-  } catch {
+  } catch (error) {
+    console.error("[contact] Email delivery failed", error)
+
     return Response.json(
       {
         ok: false,
