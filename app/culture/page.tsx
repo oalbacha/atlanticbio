@@ -69,14 +69,26 @@ export const metadata: Metadata = {
 export default function CulturePage() {
   return (
     <div className="space-y-14 lg:space-y-20">
-      <HomeHeroTabs
-        title="Our Culture"
-        intro="Building a critical minerals company means earning trust from people who don't hand it out easily - battery engineers who need consistency across ten thousand charge cycles, forestry operators whose livelihoods depend on sustainable harvest, Indigenous communities whose relationship with this land predates every policy framework we operate under, and funders who've seen enough slide decks to know the difference between a plan and a company. How we operate is how we earn that trust."
-        ctaLabel=""
-        ctaHref=""
-      />
+      <HomeHeroTabs title="Our Culture" ctaLabel="" ctaHref="" />
 
       <section className="space-y-7">
+        <div className="h-1 w-20 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
+        <div className="max-w-4xl">
+          <p className="text-base leading-7 text-muted-foreground sm:text-lg">
+            Building a critical minerals company means earning trust from
+            people who don&apos;t hand it out easily - battery engineers who
+            need consistency across ten thousand charge cycles, forestry
+            operators whose livelihoods depend on sustainable harvest,
+            Indigenous communities whose relationship with this land predates
+            every policy framework we operate under, and funders who&apos;ve seen
+            enough slide decks to know the difference between a plan and a
+            company. How we operate is how we earn that trust.
+          </p>
+        </div>
+      </section>
+
+      <section className="space-y-7">
+        <div className="h-1 w-20 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-10">
           {culturePrinciples.map((pillar) => (
             <article
