@@ -24,10 +24,10 @@ describe("SiteHeader", () => {
     )
   })
 
-  it("includes Culture as a navigation link", () => {
+  it("includes Governance Model under the Story menu", () => {
     render(<SiteHeader />)
 
-    expect(screen.getAllByRole("link", { name: "Culture" }).length).toBeGreaterThan(0)
+    expect(screen.getByRole("menuitem", { name: "Governance Model" })).toBeInTheDocument()
   })
 
   it("opens and closes mobile dialog menu", async () => {

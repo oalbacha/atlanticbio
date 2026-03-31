@@ -51,7 +51,7 @@ export const homeOpportunityMetrics: MetricItem[] = [
     sourceNote: "",
   },
   {
-    value: "Available",
+    value: "Abundant",
     label: "Feedstock",
     sourceNote: "",
   },

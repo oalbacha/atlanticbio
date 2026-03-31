@@ -17,6 +17,7 @@ Corporate portfolio website built with Next.js App Router, TypeScript, Tailwind 
 - `/`
 - `/story`
 - `/culture`
+- `/governance-model`
 - `/contact`
 
 ## Setup

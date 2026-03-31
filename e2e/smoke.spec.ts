@@ -4,6 +4,7 @@ const routes = [
   "/",
   "/story",
   "/culture",
+  "/governance-model",
   "/contact",
 ]
 

@@ -39,7 +39,7 @@ export function HomeHeroTabs({
           <div className="flex-1" />
 
           <div className="max-w-4xl space-y-6 pb-8 lg:pb-10">
-            <h1 className="max-w-4xl pb-2 font-heading text-5xl leading-[1.02] text-white [text-decoration:none] sm:text-6xl lg:text-[5.6rem]">
+            <h1 className="capitalize max-w-4xl pb-2 font-heading text-5xl leading-[1.02] text-white [text-decoration:none] sm:text-6xl lg:text-[5.6rem]">
               {title}
             </h1>
 

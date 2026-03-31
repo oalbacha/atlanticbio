@@ -7,7 +7,7 @@ const storyCards = [
   },
   {
     title: "The Feedstock",
-    copy: "New Brunswick's forestry sector generates 110,000-175,000 dry tonnes of sawmill residues annually. These residues, sawdust, bark, and wood chips, are the same input that bio-graphite conversion requires. The supply exists. It's undervalued. And it regenerates.",
+    copy: "Every year, New Brunswick’s forest industry generates over one million bone-dry tonnes of wood residues including sawdust. These residues, sawdust, bark, and wood chips, are the same input that bio-graphite conversion requires. The supply exists. It's undervalued. And it regenerates.",
   },
   {
     title: "The Approach",
@@ -20,7 +20,7 @@ const storyCards = [
 ] as const;
 
 const storyIntro =
-  "Every lithium-ion battery contains more graphite than any other mineral. It's the single largest component by weight and almost none of it is produced in North America. The industry that's supposed to decarbonize transportation is built on a material that generates 12-17 tonnes of CO2 per tonne produced. That contradiction is the reason Atlantic BioGraphite exists. New Brunswick sits on one of Eastern North America's largest forestry economies. Every year, sawmills generate hundreds of thousands of tonnes of residues, including sawdust, bark, and chips, that are either sold at thin margins or landfilled. We see a different endpoint for that material. Not pellets. Not hog fuel. Battery-grade graphite. The same material the continent is desperate to secure from domestic sources.";
+  "Every lithium-ion battery contains more graphite than any other mineral. It's the single largest component by weight and almost none of it is produced in North America. The industry that's supposed to decarbonize transportation is built on a material that generates 12-17 tonnes of CO2 per tonne produced. That contradiction is the reason Atlantic BioGraphite exists. New Brunswick sits on one of Eastern North America's largest forestry economies. Every year, sawmills generate hundreds of thousands of tonnes of residues, including sawdust, bark, and chips, that are either sold at thin margins or landfilled. We see a different endpoint for that material, battery-grade graphite.";
 
 const missionStatement =
   "Transform sustainably sourced forestry residues into battery-grade graphite — enabling the transition to electric mobility through lower-carbon, traceable, and regionally produced critical minerals.";
@@ -57,7 +57,7 @@ export default function StoryPage() {
             <div className="flex-1" />
 
             <div className="max-w-4xl space-y-5 pb-8 lg:pb-10">
-              <h1 className="max-w-4xl font-heading text-5xl leading-[1.02] text-white sm:text-6xl lg:text-[5.6rem]">
+              <h1 className="capitalize max-w-4xl font-heading text-5xl leading-[1.02] text-white sm:text-6xl lg:text-[5.6rem]">
                 Our story
               </h1>
             </div>
