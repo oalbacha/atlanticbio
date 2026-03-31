@@ -50,7 +50,11 @@ export type CareersFormInput = z.infer<typeof CareersFormSchema>
 const minHumanDelayMs = 1200
 const maxSubmissionAgeMs = 1000 * 60 * 60 * 24
 
-export function isLikelyBot(startedAt: number, website?: string): boolean {
+type BotCheckOptions = {
+  ignoreFastSubmission?: boolean
+}
+
+export function isLikelyBot(startedAt: number, website?: string, options: BotCheckOptions = {}): boolean {
   const now = Date.now()
   const age = now - startedAt
 
@@ -58,7 +62,7 @@ export function isLikelyBot(startedAt: number, website?: string): boolean {
     return true
   }
 
-  if (age < minHumanDelayMs) {
+  if (!options.ignoreFastSubmission && age < minHumanDelayMs) {
     return true
   }
 

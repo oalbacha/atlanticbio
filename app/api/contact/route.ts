@@ -8,6 +8,7 @@ import {
 } from "@/lib/validation"
 
 export async function POST(request: Request): Promise<Response> {
+  const recaptchaEnabled = isRecaptchaVerificationEnabled()
   let body: unknown
 
   try {
@@ -33,7 +34,7 @@ export async function POST(request: Request): Promise<Response> {
     )
   }
 
-  if (isLikelyBot(parsed.data.startedAt, parsed.data.website)) {
+  if (isLikelyBot(parsed.data.startedAt, parsed.data.website, { ignoreFastSubmission: recaptchaEnabled })) {
     return Response.json(
       {
         ok: true,
@@ -43,7 +44,7 @@ export async function POST(request: Request): Promise<Response> {
     )
   }
 
-  if (isRecaptchaVerificationEnabled()) {
+  if (recaptchaEnabled) {
     if (!parsed.data.recaptchaToken) {
       return Response.json(
         {

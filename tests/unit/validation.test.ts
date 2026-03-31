@@ -51,6 +51,10 @@ describe("validation", () => {
     expect(isLikelyBot(Date.now() - 5000, "")).toBe(false)
   })
 
+  it("allows fast submissions when timing checks are intentionally disabled", () => {
+    expect(isLikelyBot(Date.now() - 200, "", { ignoreFastSubmission: true })).toBe(false)
+  })
+
   it("accepts autofilled honeypot fields so the route can quietly treat them as bot traffic", () => {
     const result = ContactFormSchema.safeParse({
       name: "Alex Morgan",

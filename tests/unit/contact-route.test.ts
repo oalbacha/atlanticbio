@@ -102,6 +102,52 @@ describe("POST /api/contact", () => {
     expect(sendInquiryEmail).not.toHaveBeenCalled()
   })
 
+  it("does not silently drop fast submissions when reCAPTCHA is enabled", async () => {
+    process.env.RECAPTCHA_SECRET_KEY = "test-secret"
+    process.env.SKIP_RECAPTCHA_VERIFICATION = "false"
+
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(
+        new Response(
+          JSON.stringify({
+            success: true,
+            action: "contact_form",
+            score: 0.9,
+          }),
+          {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+      )
+    )
+
+    const response = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        body: JSON.stringify({
+          name: "Taylor Reed",
+          email: "taylor@example.com",
+          company: "North Battery",
+          inquiryType: "Partnership",
+          message: "We would like to discuss pilot sample qualification and timeline alignment.",
+          startedAt: Date.now() - 200,
+          website: "",
+          recaptchaToken: "test-token",
+        }),
+      })
+    )
+
+    const data = (await response.json()) as { ok: boolean; message?: string }
+
+    expect(response.status).toBe(200)
+    expect(data.ok).toBe(true)
+    expect(sendInquiryEmail).toHaveBeenCalledTimes(2)
+  })
+
   it("returns validation errors for invalid payload", async () => {
     const response = await POST(
       new Request("http://localhost/api/contact", {
