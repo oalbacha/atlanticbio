@@ -25,8 +25,6 @@ export default defineConfig({
       DISABLE_EMAIL_DELIVERY: "true",
       RESEND_FROM_EMAIL: "Atlantic BioGraphite <no-reply@example.com>",
       CONTACT_EMAIL_TO: "contact@example.com",
-      INVESTORS_EMAIL_TO: "investors@example.com",
-      CAREERS_EMAIL_TO: "careers@example.com",
       RESEND_API_KEY: "re_test_key",
     },
   },

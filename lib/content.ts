@@ -12,11 +12,7 @@ export const siteName = "Atlantic BioGraphite";
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Story", href: "/story" },
-  { label: "Mission", href: "/mission" },
   { label: "Culture", href: "/culture" },
-  { label: "Career", href: "/career" },
-  { label: "Biographite", href: "/biographite" },
-  { label: "Investors", href: "/investors" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -239,52 +235,6 @@ export const productSpecs: SpecItem[] = [
     parameter: "Critical Impurities",
     target: "Fe/Al <50 ppm, Ni/Cu/Co <20 ppm",
     rationale: "Protects battery safety and long-term performance stability.",
-  },
-];
-
-export const investorHighlights: InvestorHighlight[] = [
-  {
-    title: "Funding Ask",
-    detail:
-      "Phase 1 target C$300,000 (with C$350,000 stretch scope) to complete 12-month feasibility work.",
-  },
-  {
-    title: "Unit Economics (Base Case)",
-    detail:
-      "Modeled C$3,000/tonne COGS and 45% gross margin at C$5,500/tonne pricing assumptions.",
-  },
-  {
-    title: "Commercial Positioning",
-    detail:
-      "Premium to natural graphite, discount to synthetic graphite, without relying on a green premium narrative.",
-  },
-  {
-    title: "Decision Discipline",
-    detail:
-      "Formal go/no-go gates in Q2 and Q4 to protect capital and keep phase transitions evidence-based.",
-  },
-];
-
-export const investorRisks: InvestorHighlight[] = [
-  {
-    title: "Technical qualification risk",
-    detail:
-      "Mitigated through staged testing, multiple feedstocks, and independent characterization.",
-  },
-  {
-    title: "Adoption timeline risk",
-    detail:
-      "Managed with early customer engagement and qualification-aligned pilot sampling.",
-  },
-  {
-    title: "Funding timing risk",
-    detail:
-      "Addressed by parallel public-private pathways and milestone-based de-risking.",
-  },
-  {
-    title: "Competitive timing risk",
-    detail:
-      "Countered by regional focus and speed to credible feasibility outputs.",
   },
 ];
 

@@ -3,11 +3,7 @@ import { expect, test } from "@playwright/test"
 const routes = [
   "/",
   "/story",
-  "/mission",
   "/culture",
-  "/career",
-  "/biographite",
-  "/investors",
   "/contact",
 ]
 
@@ -20,7 +16,7 @@ test("all routes render heading content", async ({ page }) => {
 
 test("mobile menu is full-screen and highlights active page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto("/mission")
+  await page.goto("/story")
 
   await page.getByRole("button", { name: /open menu/i }).click()
   const dialog = page.getByRole("dialog")
@@ -30,7 +26,7 @@ test("mobile menu is full-screen and highlights active page", async ({ page }) =
   const box = await dialog.boundingBox()
   expect(box?.height ?? 0).toBeGreaterThanOrEqual(viewportHeight * 0.9)
 
-  await expect(page.getByRole("link", { name: "Mission" }).first()).toHaveAttribute("aria-current", "page")
+  await expect(page.getByRole("link", { name: "Story" }).first()).toHaveAttribute("aria-current", "page")
 })
 
 test("hero video exists with fallback poster", async ({ page }) => {

@@ -16,11 +16,7 @@ Corporate portfolio website built with Next.js App Router, TypeScript, Tailwind 
 
 - `/`
 - `/story`
-- `/mission`
 - `/culture`
-- `/career`
-- `/biographite`
-- `/investors`
 - `/contact`
 
 ## Setup
@@ -37,8 +33,6 @@ npm run dev
 RESEND_API_KEY=
 RESEND_FROM_EMAIL=
 CONTACT_EMAIL_TO=
-INVESTORS_EMAIL_TO=
-CAREERS_EMAIL_TO=
 DISABLE_EMAIL_DELIVERY=false
 ```
 

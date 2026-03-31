@@ -12,23 +12,22 @@ vi.mock("next/navigation", () => ({
 
 describe("SiteHeader", () => {
   beforeEach(() => {
-    mockPathname.mockReturnValue("/mission")
+    mockPathname.mockReturnValue("/story")
   })
 
-  it("highlights active Story dropdown trigger", () => {
+  it("highlights the active primary link", () => {
     render(<SiteHeader />)
 
-    const storyLinks = screen.getAllByRole("link", { name: "Story" })
-    expect(
-      storyLinks.some((link) => link.getAttribute("aria-current") === "page")
-    ).toBe(true)
+    expect(screen.getAllByRole("link", { name: "Story" })[0]).toHaveAttribute(
+      "aria-current",
+      "page"
+    )
   })
 
-  it("includes Mission and Culture inside the Story dropdown", () => {
+  it("includes Culture as a navigation link", () => {
     render(<SiteHeader />)
 
-    expect(screen.getByRole("menuitem", { name: "Mission" })).toBeInTheDocument()
-    expect(screen.getByRole("menuitem", { name: "Culture" })).toBeInTheDocument()
+    expect(screen.getAllByRole("link", { name: "Culture" }).length).toBeGreaterThan(0)
   })
 
   it("opens and closes mobile dialog menu", async () => {

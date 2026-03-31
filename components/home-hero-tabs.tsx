@@ -4,7 +4,19 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-export function HomeHeroTabs() {
+type HomeHeroTabsProps = {
+  title?: string;
+  intro?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+};
+
+export function HomeHeroTabs({
+  title = "Canada's graphite from forest biomass",
+  intro,
+  ctaLabel = "Start a conversation",
+  ctaHref = "/contact",
+}: HomeHeroTabsProps) {
   return (
     <section className="relative left-1/2 right-1/2 -mt-8 w-screen -translate-x-1/2 overflow-hidden lg:-mt-10">
       <div className="relative min-h-[88svh] bg-[#09100d]">
@@ -27,15 +39,23 @@ export function HomeHeroTabs() {
           <div className="flex-1" />
 
           <div className="max-w-4xl space-y-6 pb-8 lg:pb-10">
-            <h1 className="capitalize max-w-4xl pb-2 font-heading text-5xl leading-[1.02] text-white [text-decoration:none] sm:text-6xl lg:text-[5.6rem]">
-              Canada&apos;s graphite from forest biomass
+            <h1 className="max-w-4xl pb-2 font-heading text-5xl leading-[1.02] text-white [text-decoration:none] sm:text-6xl lg:text-[5.6rem]">
+              {title}
             </h1>
 
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full px-7">
-                <Link href="/contact">Start a conversation</Link>
-              </Button>
-            </div>
+            {intro ? (
+              <p className="max-w-3xl text-base leading-7 text-white/88 sm:text-lg">
+                {intro}
+              </p>
+            ) : null}
+
+            {ctaLabel && ctaHref ? (
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" className="rounded-full px-7">
+                  <Link href={ctaHref}>{ctaLabel}</Link>
+                </Button>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

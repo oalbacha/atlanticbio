@@ -10,13 +10,13 @@ describe("navigation helpers", () => {
   })
 
   it("matches nested routes", () => {
-    expect(isActivePath("/investors", "/investors")).toBe(true)
-    expect(isActivePath("/investors", "/investors/updates/q1")).toBe(true)
-    expect(isActivePath("/investors", "/story")).toBe(false)
+    expect(isActivePath("/story", "/story")).toBe(true)
+    expect(isActivePath("/story", "/story/updates/q1")).toBe(true)
+    expect(isActivePath("/story", "/mission")).toBe(false)
   })
 
   it("returns active navigation item", () => {
-    expect(getActiveNavItem("/mission", navItems)?.label).toBe("Mission")
+    expect(getActiveNavItem("/culture", navItems)?.label).toBe("Culture")
     expect(getActiveNavItem("/not-a-page", navItems)).toBeNull()
   })
 })
