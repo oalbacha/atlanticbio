@@ -88,15 +88,17 @@ export default function CulturePage() {
       </section>
 
       <section className="space-y-7">
-        <div className="h-1 w-20 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-10">
-          {culturePrinciples.map((pillar) => (
+          {culturePrinciples.map((pillar, index) => (
             <article
               key={pillar.title}
-              className={`relative rounded-2xl border border-border/80 bg-card/70 p-6 ${pillar.className}`}
+              className={`relative overflow-hidden rounded-2xl border border-border/80 bg-card/70 p-6 backdrop-blur-sm ${pillar.className}`}
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
-              <h2 className="text-2xl">{pillar.title}</h2>
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary/80 via-primary to-primary/35" />
+              <p className="font-mono text-xs tracking-[0.18em] text-primary uppercase">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h2 className="mt-4 text-2xl text-foreground">{pillar.title}</h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {pillar.detail}
               </p>
@@ -115,13 +117,18 @@ export default function CulturePage() {
           intro="Support for Atlantic BioGraphite compounds across climate impact, regional industry, supply security, and economic reconciliation."
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {backingOutcomes.map((outcome) => (
+          {backingOutcomes.map((outcome, index) => (
             <article
               key={outcome.title}
-              className="relative rounded-2xl border border-border/80 bg-card/70 p-6"
+              className="relative overflow-hidden rounded-2xl border border-border/80 bg-card/70 p-6 backdrop-blur-sm"
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary/80 via-primary to-primary/40" />
-              <h2 className="text-2xl">{outcome.title}</h2>
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary/80 via-primary to-primary/35" />
+              <p className="font-mono text-xs tracking-[0.18em] text-primary uppercase">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h2 className="mt-4 text-2xl text-foreground">
+                {outcome.title}
+              </h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {outcome.detail}
               </p>
