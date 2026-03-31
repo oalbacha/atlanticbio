@@ -1,8 +1,8 @@
 import { z } from "zod"
 
 const antiSpamSchema = z.object({
-  website: z.string().max(0).optional().default(""),
-  startedAt: z.coerce.number().int().positive(),
+  website: z.string().optional().default(""),
+  startedAt: z.coerce.number().int().nonnegative().catch(0),
 })
 
 const emailSchema = z.email("Enter a valid email address")

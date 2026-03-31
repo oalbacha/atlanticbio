@@ -50,4 +50,22 @@ describe("validation", () => {
     expect(isLikelyBot(Date.now() - 5000, "spam-field")).toBe(true)
     expect(isLikelyBot(Date.now() - 5000, "")).toBe(false)
   })
+
+  it("accepts autofilled honeypot fields so the route can quietly treat them as bot traffic", () => {
+    const result = ContactFormSchema.safeParse({
+      name: "Alex Morgan",
+      email: "alex@example.com",
+      company: "ABG Partner",
+      inquiryType: "General",
+      message: "We are interested in discussing qualification timelines for pilot samples.",
+      startedAt: "",
+      website: "https://example.com",
+    })
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(isLikelyBot(result.data.startedAt, result.data.website)).toBe(true)
+    }
+  })
 })
