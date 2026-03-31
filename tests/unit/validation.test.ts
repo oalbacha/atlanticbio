@@ -17,6 +17,20 @@ describe("validation", () => {
     expect(result.success).toBe(true)
   })
 
+  it("accepts the form before reCAPTCHA is configured", () => {
+    const result = ContactFormSchema.safeParse({
+      name: "Alex Morgan",
+      email: "alex@example.com",
+      company: "ABG Partner",
+      inquiryType: "General",
+      message: "We are interested in discussing qualification timelines for pilot samples.",
+      startedAt: Date.now() - 5000,
+      website: "",
+    })
+
+    expect(result.success).toBe(true)
+  })
+
   it("fails with missing required fields", () => {
     const result = ContactFormSchema.safeParse({
       name: "",

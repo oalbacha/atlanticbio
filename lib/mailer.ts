@@ -1,9 +1,9 @@
 import { Resend } from "resend"
 
 type SendInquiryEmailParams = {
-  to: string
+  to: string | string[]
   subject: string
-  replyTo: string
+  replyTo?: string
   text: string
 }
 

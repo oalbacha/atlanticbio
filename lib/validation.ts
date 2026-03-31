@@ -18,6 +18,7 @@ export const ContactFormSchema = antiSpamSchema.extend({
   company: z.string().min(2, "Company is required").max(150),
   inquiryType: z.enum(["General", "Partnership", "Media", "Other"]),
   message: messageSchema,
+  recaptchaToken: z.string().min(1).optional(),
 })
 
 export const InvestorsFormSchema = antiSpamSchema.extend({

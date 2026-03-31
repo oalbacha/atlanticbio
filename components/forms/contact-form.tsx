@@ -1,12 +1,27 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Script from "next/script"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void
+      execute: (
+        siteKey: string,
+        options: {
+          action: string
+        }
+      ) => Promise<string>
+    }
+  }
+}
 
 type FormState = {
   status: "idle" | "submitting" | "success" | "error"
@@ -20,9 +35,14 @@ const initialState: FormState = {
   fieldErrors: {},
 }
 
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ""
+const skipRecaptcha = process.env.NEXT_PUBLIC_SKIP_RECAPTCHA === "true"
+const recaptchaAction = "contact_form"
+
 export function ContactForm() {
   const startedAtRef = useRef<HTMLInputElement>(null)
   const [state, setState] = useState<FormState>(initialState)
+  const [isRecaptchaReady, setIsRecaptchaReady] = useState(skipRecaptcha || !recaptchaSiteKey)
 
   useEffect(() => {
     if (startedAtRef.current) {
@@ -30,12 +50,12 @@ export function ContactForm() {
     }
   }, [])
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = event.currentTarget
-
+  async function submitForm(form: HTMLFormElement, recaptchaToken?: string) {
     const formData = new FormData(form)
-    const payload = Object.fromEntries(formData.entries())
+    const payload = {
+      ...Object.fromEntries(formData.entries()),
+      ...(recaptchaToken ? { recaptchaToken } : {}),
+    }
 
     setState((current) => ({ ...current, status: "submitting", message: "", fieldErrors: {} }))
 
@@ -78,12 +98,64 @@ export function ContactForm() {
     }
   }
 
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+
+    if (skipRecaptcha) {
+      await submitForm(form, "test-recaptcha-token")
+      return
+    }
+
+    if (!recaptchaSiteKey) {
+      await submitForm(form)
+      return
+    }
+
+    if (!window.grecaptcha || !isRecaptchaReady) {
+      setState({
+        status: "error",
+        message: "Spam protection is still loading. Please try again in a moment.",
+        fieldErrors: {},
+      })
+      return
+    }
+
+    setState((current) => ({ ...current, status: "submitting", message: "", fieldErrors: {} }))
+
+    try {
+      const recaptchaToken = await new Promise<string>((resolve, reject) => {
+        window.grecaptcha?.ready(() => {
+          window.grecaptcha
+            ?.execute(recaptchaSiteKey, { action: recaptchaAction })
+            .then(resolve)
+            .catch(reject)
+        })
+      })
+
+      await submitForm(form, recaptchaToken)
+    } catch {
+      setState({
+        status: "error",
+        message: "Unable to verify spam protection. Please try again.",
+        fieldErrors: {},
+      })
+    }
+  }
+
   return (
     <Card className="border-border/80 bg-card/80">
       <CardHeader>
         <CardTitle className="font-heading text-2xl">General Contact</CardTitle>
       </CardHeader>
       <CardContent>
+        {recaptchaSiteKey ? (
+          <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+            strategy="afterInteractive"
+            onReady={() => setIsRecaptchaReady(true)}
+          />
+        ) : null}
         <form className="space-y-5" onSubmit={onSubmit} noValidate>
           <input ref={startedAtRef} type="hidden" name="startedAt" defaultValue="" />
           <div className="hidden" aria-hidden="true">
@@ -140,6 +212,10 @@ export function ContactForm() {
               <p className="text-xs text-muted-foreground">Please include context, timeline, and intended outcomes.</p>
             )}
           </div>
+
+          {state.fieldErrors.recaptchaToken ? (
+            <p className="text-xs text-destructive">{state.fieldErrors.recaptchaToken[0]}</p>
+          ) : null}
 
           <Button className="w-full sm:w-auto" size="lg" disabled={state.status === "submitting"}>
             {state.status === "submitting" ? "Sending..." : "Send Message"}
