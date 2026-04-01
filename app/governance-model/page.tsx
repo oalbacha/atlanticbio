@@ -1,8 +1,6 @@
-import { type Metadata } from "next"
-
-import { PageHero } from "@/components/sections/page-hero"
-import { SectionHeading } from "@/components/sections/section-heading"
-import { Card, CardContent } from "@/components/ui/card"
+import { SiteHero } from "@/components/site-hero";
+import { SectionHeading } from "@/components/sections/section-heading";
+import { Card, CardContent } from "@/components/ui/card";
 
 const governanceStages = [
   {
@@ -17,21 +15,12 @@ const governanceStages = [
     title: "Stage 3: Full board governance and ESG reporting",
     copy: "A placeholder model for expanded board governance, formal ESG oversight, and repeatable reporting cadence.",
   },
-]
-
-export const metadata: Metadata = {
-  title: "Governance Model",
-  description: "Placeholder page for the governance model and oversight cadence.",
-}
+];
 
 export default function GovernanceModelPage() {
   return (
-    <div className="space-y-12">
-      <PageHero
-        label="Governance"
-        title="How we govern growth and decision quality"
-        intro="Placeholder text describing the governance model, oversight cadence, and how accountability scales with execution maturity."
-      />
+    <div className="space-y-14 lg:space-y-20">
+      <SiteHero title="Governance Model" ctaLabel="" ctaHref="" />
 
       <section className="space-y-7">
         <SectionHeading
@@ -45,7 +34,9 @@ export default function GovernanceModelPage() {
             <Card key={stage.title} className="border-border/80 bg-card/70">
               <CardContent className="space-y-3 p-6">
                 <h2 className="text-2xl">{stage.title}</h2>
-                <p className="text-sm leading-7 text-muted-foreground">{stage.copy}</p>
+                <p className="text-sm leading-7 text-muted-foreground">
+                  {stage.copy}
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -61,14 +52,17 @@ export default function GovernanceModelPage() {
 
         <div className="grid gap-4">
           <p className="rounded-2xl border border-border/80 bg-card/70 p-6 text-sm leading-7 text-muted-foreground">
-            1) Capture key assumptions, evidence, and go/no-go criteria for each milestone.
+            1) Capture key assumptions, evidence, and go/no-go criteria for each
+            milestone.
             <br />
-            2) Maintain a repeatable reporting cadence (quarterly operational updates, annual sustainability reporting).
+            2) Maintain a repeatable reporting cadence (quarterly operational
+            updates, annual sustainability reporting).
             <br />
-            3) Ensure escalation paths exist for technical quality, safety, and supply-chain risks.
+            3) Ensure escalation paths exist for technical quality, safety, and
+            supply-chain risks.
           </p>
         </div>
       </section>
     </div>
-  )
+  );
 }

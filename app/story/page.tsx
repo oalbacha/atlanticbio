@@ -1,5 +1,7 @@
 import { type Metadata } from "next";
 
+import { SiteHero } from "@/components/site-hero";
+
 const storyCards = [
   {
     title: "The Problem",
@@ -36,34 +38,7 @@ export const metadata: Metadata = {
 export default function StoryPage() {
   return (
     <div className="space-y-14 lg:space-y-20">
-      <section className="relative left-1/2 right-1/2 -mt-8 w-screen -translate-x-1/2 overflow-hidden lg:-mt-10">
-        <div className="relative min-h-[76svh] bg-[#09100d]">
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/media/wonderful-video-poster.jpg"
-            aria-hidden="true"
-          >
-            <source src="/media/wonderful-video.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,8,0.22),rgba(7,10,8,0.42)_34%,rgba(7,10,8,0.88)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(207,176,109,0.16),transparent_24%),radial-gradient(circle_at_82%_18%,rgba(108,149,96,0.14),transparent_25%)]" />
-
-          <div className="relative mx-auto flex min-h-[76svh] max-w-7xl flex-col px-6 pb-6 lg:px-8 lg:pb-8">
-            <div className="flex-1" />
-
-            <div className="max-w-4xl space-y-5 pb-8 lg:pb-10">
-              <h1 className="capitalize max-w-4xl font-heading text-5xl leading-[1.02] text-white sm:text-6xl lg:text-[5.6rem]">
-                Our story
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SiteHero title="Our story" ctaLabel="" ctaHref="" />
 
       <section className="space-y-7">
         <div className="h-1 w-20 bg-linear-to-r from-primary/80 via-primary to-primary/40" />

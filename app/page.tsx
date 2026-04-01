@@ -1,4 +1,4 @@
-import { HomeHeroTabs } from "@/components/home-hero-tabs";
+import { SiteHero } from "@/components/site-hero";
 import { MetricGrid } from "@/components/sections/metric-grid";
 import { NewBrunswickParallax } from "@/components/sections/new-brunswick-parallax";
 import { SectionHeading } from "@/components/sections/section-heading";
@@ -26,7 +26,7 @@ const valueDrivers = [
 export default function HomePage() {
   return (
     <div className="space-y-14 lg:space-y-20">
-      <HomeHeroTabs />
+      <SiteHero />
 
       <section className="space-y-7">
         <div className="h-1 w-20 bg-linear-to-r from-primary/80 via-primary to-primary/40" />

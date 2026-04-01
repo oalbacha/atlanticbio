@@ -4,19 +4,19 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-type HomeHeroTabsProps = {
+type SiteHeroProps = {
   title?: string;
   intro?: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
 
-export function HomeHeroTabs({
+export function SiteHero({
   title = "Canada's graphite from forest biomass",
   intro,
   ctaLabel = "Start a conversation",
   ctaHref = "/contact",
-}: HomeHeroTabsProps) {
+}: SiteHeroProps) {
   return (
     <section className="relative left-1/2 right-1/2 -mt-8 w-screen -translate-x-1/2 overflow-hidden lg:-mt-10">
       <div className="relative min-h-[88svh] bg-[#09100d]">
