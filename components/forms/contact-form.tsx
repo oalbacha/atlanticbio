@@ -46,10 +46,18 @@ export function ContactForm() {
   const [state, setState] = useState<FormState>(initialState)
   const [isRecaptchaReady, setIsRecaptchaReady] = useState(skipRecaptcha || !recaptchaSiteKey)
 
-  useEffect(() => {
+  function ensureStartedAtValue() {
     if (startedAtRef.current) {
-      startedAtRef.current.value = String(Date.now())
+      const currentValue = startedAtRef.current.value.trim()
+
+      if (!currentValue) {
+        startedAtRef.current.value = String(Date.now())
+      }
     }
+  }
+
+  useEffect(() => {
+    ensureStartedAtValue()
   }, [])
 
   function getFieldError(name: string) {
@@ -103,6 +111,8 @@ export function ContactForm() {
   }
 
   async function submitForm(form: HTMLFormElement, recaptchaToken?: string) {
+    ensureStartedAtValue()
+
     const formData = new FormData(form)
     const payload = {
       ...Object.fromEntries(formData.entries()),
@@ -153,6 +163,7 @@ export function ContactForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.currentTarget
+    ensureStartedAtValue()
 
     if (!validateClientPayload(form)) {
       return

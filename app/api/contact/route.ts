@@ -25,6 +25,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const parsed = ContactFormSchema.safeParse(body);
+  console.log({ parsed });
 
   if (!parsed.success) {
     return Response.json(

@@ -60,4 +60,46 @@ describe("ContactForm", () => {
 
     expect(screen.getByText("Company is required")).toBeInTheDocument()
   })
+
+  it("fills startedAt before submitting when the hidden field is blank", async () => {
+    const user = userEvent.setup()
+    const fetchSpy = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        ok: true,
+        message: "Thank you. Your inquiry has been submitted and a confirmation email has been sent.",
+      }),
+    })
+    vi.stubGlobal("fetch", fetchSpy)
+
+    render(<ContactForm />)
+
+    const form = screen.getByRole("button", { name: "Send Message" }).closest("form")
+    const startedAtInput = form?.querySelector<HTMLInputElement>('input[name="startedAt"]')
+
+    if (!startedAtInput) {
+      throw new Error("Expected startedAt input to exist")
+    }
+
+    startedAtInput.value = ""
+
+    await user.type(screen.getByLabelText("Full Name"), "Jordan Lee")
+    await user.type(screen.getByLabelText("Work Email"), "jordan@example.com")
+    await user.type(screen.getByLabelText("Company"), "Grid Materials")
+    await user.type(
+      screen.getByLabelText("Message"),
+      "We want to discuss pilot sample qualification in Q3 and potential offtake pathways."
+    )
+
+    await user.click(screen.getByRole("button", { name: "Send Message" }))
+
+    await waitFor(() => {
+      expect(fetchSpy).toHaveBeenCalledTimes(1)
+    })
+
+    const requestInit = fetchSpy.mock.calls[0]?.[1] as RequestInit | undefined
+    const payload = requestInit?.body ? JSON.parse(String(requestInit.body)) : null
+
+    expect(payload?.startedAt).toBeTruthy()
+  })
 })
