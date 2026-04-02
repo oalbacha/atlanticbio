@@ -1,27 +1,30 @@
-import { isRecaptchaVerificationEnabled, verifyRecaptchaToken } from "@/lib/recaptcha"
-import { sendInquiryEmail } from "@/lib/mailer"
+import {
+  isRecaptchaVerificationEnabled,
+  verifyRecaptchaToken,
+} from "@/lib/recaptcha";
+import { sendInquiryEmail } from "@/lib/mailer";
 import {
   type ApiError,
   type ApiSuccess,
   ContactFormSchema,
   isLikelyBot,
-} from "@/lib/validation"
+} from "@/lib/validation";
 
 export async function POST(request: Request): Promise<Response> {
-  const recaptchaEnabled = isRecaptchaVerificationEnabled()
-  let body: unknown
+  const recaptchaEnabled = isRecaptchaVerificationEnabled();
+  let body: unknown;
 
   try {
-    body = await request.json()
+    body = await request.json();
   } catch {
     const payload: ApiError = {
       ok: false,
       error: "Invalid payload.",
-    }
-    return Response.json(payload, { status: 400 })
+    };
+    return Response.json(payload, { status: 400 });
   }
 
-  const parsed = ContactFormSchema.safeParse(body)
+  const parsed = ContactFormSchema.safeParse(body);
 
   if (!parsed.success) {
     return Response.json(
@@ -30,18 +33,22 @@ export async function POST(request: Request): Promise<Response> {
         error: "Please review the highlighted fields.",
         fieldErrors: parsed.error.flatten().fieldErrors,
       } satisfies ApiError,
-      { status: 400 }
-    )
+      { status: 400 },
+    );
   }
 
-  if (isLikelyBot(parsed.data.startedAt, parsed.data.website, { ignoreFastSubmission: recaptchaEnabled })) {
+  if (
+    isLikelyBot(parsed.data.startedAt, parsed.data.website, {
+      ignoreFastSubmission: recaptchaEnabled,
+    })
+  ) {
     return Response.json(
       {
         ok: true,
         message: "Thanks for contacting Atlantic BioGraphite.",
       } satisfies ApiSuccess,
-      { status: 200 }
-    )
+      { status: 200 },
+    );
   }
 
   if (recaptchaEnabled) {
@@ -54,12 +61,14 @@ export async function POST(request: Request): Promise<Response> {
             recaptchaToken: ["Spam protection verification is required."],
           },
         } satisfies ApiError,
-        { status: 400 }
-      )
+        { status: 400 },
+      );
     }
 
     try {
-      const isRecaptchaValid = await verifyRecaptchaToken(parsed.data.recaptchaToken)
+      const isRecaptchaValid = await verifyRecaptchaToken(
+        parsed.data.recaptchaToken,
+      );
 
       if (!isRecaptchaValid) {
         return Response.json(
@@ -67,24 +76,28 @@ export async function POST(request: Request): Promise<Response> {
             ok: false,
             error: "Unable to verify spam protection. Please try again.",
             fieldErrors: {
-              recaptchaToken: ["Spam protection verification failed. Please try again."],
+              recaptchaToken: [
+                "Spam protection verification failed. Please try again.",
+              ],
             },
           } satisfies ApiError,
-          { status: 400 }
-        )
+          { status: 400 },
+        );
       }
     } catch {
       return Response.json(
         {
           ok: false,
-          error: "Spam protection is temporarily unavailable. Please try again.",
+          error:
+            "Spam protection is temporarily unavailable. Please try again.",
         } satisfies ApiError,
-        { status: 503 }
-      )
+        { status: 503 },
+      );
     }
   }
 
-  const recipient = process.env.CONTACT_EMAIL_TO ?? "contact@example.com"
+  const recipient =
+    process.env.CONTACT_EMAIL_TO ?? "info@atlanticbiographite.com";
 
   const adminText = [
     "New contact inquiry",
@@ -95,7 +108,7 @@ export async function POST(request: Request): Promise<Response> {
     "",
     "Message:",
     parsed.data.message,
-  ].join("\n")
+  ].join("\n");
 
   const userText = [
     `Hi ${parsed.data.name},`,
@@ -110,7 +123,7 @@ export async function POST(request: Request): Promise<Response> {
     parsed.data.message,
     "",
     "Atlantic BioGraphite",
-  ].join("\n")
+  ].join("\n");
 
   try {
     await Promise.all([
@@ -125,24 +138,25 @@ export async function POST(request: Request): Promise<Response> {
         subject: "We received your Atlantic BioGraphite inquiry",
         text: userText,
       }),
-    ])
+    ]);
 
     return Response.json(
       {
         ok: true,
-        message: "Thank you. Your inquiry has been submitted and a confirmation email has been sent.",
+        message:
+          "Thank you. Your inquiry has been submitted and a confirmation email has been sent.",
       } satisfies ApiSuccess,
-      { status: 200 }
-    )
+      { status: 200 },
+    );
   } catch (error) {
-    console.error("[contact] Email delivery failed", error)
+    console.error("[contact] Email delivery failed", error);
 
     return Response.json(
       {
         ok: false,
         error: "Unable to submit right now. Please try again.",
       } satisfies ApiError,
-      { status: 500 }
-    )
+      { status: 500 },
+    );
   }
 }
