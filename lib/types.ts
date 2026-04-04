@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export type NavItem = {
   label: string;
   href: string;
@@ -9,10 +11,6 @@ export type MetricItem = {
   sourceNote: string;
 };
 
-export type HowItWorksMetricItem = {
-  title: string;
-  detail: string;
-};
 export type TimelinePhase = {
   phase: string;
   years: string;

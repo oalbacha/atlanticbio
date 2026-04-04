@@ -10,6 +10,9 @@ export function SiteFooter() {
           <p className="font-heading text-2xl tracking-wide text-foreground">
             ATLANTIC BIOGRAPHITE
           </p>
+          <p className="text-sm text-muted-foreground">
+            New Brunswick, Canada{" "}
+          </p>
         </div>
 
         <nav
@@ -27,6 +30,9 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
+      <p className="text-center text-sm text-muted-foreground">
+        &copy; {new Date().getFullYear()} Copyright Atlantic BioGraphite.
+      </p>
     </footer>
   );
 }

@@ -9,9 +9,13 @@ type SiteHeroProps = {
   intro?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  videoSrc?: string;
+  videoPoster?: string;
 };
 
 export function SiteHero({
+  videoSrc = "/media/wonderful-video.mp4",
+  videoPoster = "/media/hero-poster.jpg",
   title = "Canada's graphite from forest biomass",
   intro,
   ctaLabel = "Start a conversation",
@@ -27,10 +31,10 @@ export function SiteHero({
           loop
           playsInline
           preload="metadata"
-          poster="/media/wonderful-video-poster.jpg"
+          poster={videoPoster}
           aria-hidden="true"
         >
-          <source src="/media/wonderful-video.mp4" type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,8,0.18),rgba(7,10,8,0.32)_32%,rgba(7,10,8,0.82)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(207,176,109,0.18),transparent_22%),radial-gradient(circle_at_82%_18%,rgba(108,149,96,0.14),transparent_24%)]" />
