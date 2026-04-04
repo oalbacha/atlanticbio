@@ -1,7 +1,6 @@
 import { type Metadata } from "next";
 
 import { SiteHero } from "@/components/site-hero";
-import { NewBrunswickParallax } from "@/components/sections/new-brunswick-parallax";
 import { Building2, Clock, Flame, MapPin } from "lucide-react";
 import VideoSection from "@/components/sections/video-section";
 
@@ -10,43 +9,43 @@ const storyCards = [
     id: "performance-first",
     icon: Flame,
     title: "Performance First",
-    copy: "Bio-graphite has to meet battery-grade specifications, purity, capacity, consistency, before any other advantage matters. That is the standard we hold ourselves to, and it is the foundation every other part is built on.",
+    copy: "Bio-graphite has to meet battery-grade specifications, purity, capacity, consistency, before any other advantage matters. That is the standard we hold ourselves to, and it is the foundation every other part is built on",
   },
   {
     id: "built-to-integrate",
     icon: Building2,
     title: "Built to Integrate",
-    copy: "We bring production of bio-graphite to Eastern North America by working with proven technology partners, established feedstock suppliers, and the research institutions that understand this science. We build with the ecosystem, not apart from it.",
+    copy: "We bring production of bio-graphite to Eastern North America by working with proven technology partners, established feedstock suppliers, and the research institutions that understand this science. We build with the ecosystem, not apart from it",
   },
   {
     id: "phased-by-design",
     icon: Clock,
     title: "Phased by Design",
-    copy: "Feasibility before pilot. Pilot before commercial. Capital follows proof, not projections. We earn the trust of the partners and institutions we need to scale.",
+    copy: "Feasibility before pilot. Pilot before commercial. Capital follows proof, not projections. We earn the trust of the partners and institutions we need to scale",
   },
   {
     id: "regional-by-conviction",
     icon: MapPin,
     title: "Regional by Conviction",
-    copy: "Atlantic Canada has the feedstock, the forestry expertise, and the geographic proximity to the North American battery manufacturing corridor. The structural advantages are here. The location is the thesis.",
+    copy: "Atlantic Canada has the feedstock, the forestry expertise, and the geographic proximity to the North American battery manufacturing corridor. The structural advantages are here. The location is the thesis",
   },
 ] as const;
 
 const storyIntro1 = `
   When we talk about lithium. We talk about cobalt. We rarely talk about graphite, even though it is the single largest mineral in every lithium-ion battery, larger by weight than all the metals that make headlines.
-While the world races to build battery factories across North America, virtually all of the graphite feeding those factories is refined overseas, produced through processes that generate up to 17 tonnes of CO₂ for every tonne of material.
+While the world races to build battery factories across North America, virtually all of the graphite feeding those factories is refined overseas, produced through processes that generate up to 17 tonnes of CO₂ for every tonne of material. This is a bottleneck for the clean energy transition. Atlantic BioGraphite is building the infrastructure to convert local byproducts into high-value critical material
   `;
 const storyIntro2 = `
   The industry building the future of transportation is tethered to a supply chain that belongs to the past
 Atlantic BioGraphite didn’t come from another mine, but with a fundamentally different approach.
-Atlantic Canada is the home of the most forested land in the country, with over 130 years of industrial forestry operations. Every year, sawmills across the region produce over a million tonnes of residues that are undervalued or landfilled. We are building the infrastructure to convert those residues into battery-grade graphite, right here, for the North American supply chain that needs it most.
+Atlantic Canada is the home of the most forested land in the country, with over 130 years of industrial forestry operations. Every year, sawmills across the region produce over a million tonnes of residues that are undervalued or landfilled. We are building the infrastructure to convert those residues into battery-grade graphite, right here, for the North American supply chain that needs it most
   `;
 
 const missionStatement =
-  "Transform sustainably sourced forestry residues into battery-grade graphite, enabling the transition to electric mobility through lower-carbon, traceable, and regionally produced critical minerals.";
+  "Transform sustainably sourced forestry residues into battery-grade graphite, enabling the transition to electric mobility through lower-carbon, traceable, and regionally produced critical minerals";
 
 const visionStatement =
-  "Establish Atlantic Canada as North America's leading producer of carbon-negative battery materials, proving that critical minerals production can be environmentally regenerative, economically sustainable, and socially beneficial.";
+  "Establish Atlantic Canada as North America's leading producer of carbon-negative battery materials, proving that critical minerals production can be environmentally regenerative, economically sustainable, and socially beneficial";
 
 export const metadata: Metadata = {
   title: "Story",

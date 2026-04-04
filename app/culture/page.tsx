@@ -12,7 +12,7 @@ const culturePrinciples = [
     icon: Flame,
     title: "Operational Excellence",
     detail:
-      "Our products target battery-grade specifications at industry-leading yield and energy efficiency.",
+      "Our products target battery-grade specifications at industry-leading yield and energy efficiency",
     className: "xl:col-span-5",
   },
   {
@@ -20,7 +20,7 @@ const culturePrinciples = [
     icon: Handshake,
     title: "Partnership First",
     detail:
-      "We engage Indigenous communities as partners from project inception. We value biomass suppliers as collaborators. We work with customers as co-developers.",
+      "We engage Indigenous communities as partners from project inception. We value biomass suppliers as collaborators. We work with customers as co-developers",
     className: "xl:col-span-5",
   },
   {
@@ -28,7 +28,7 @@ const culturePrinciples = [
     icon: MapPin,
     title: "Regional Commitment",
     detail:
-      "We measure success not only in financial returns but in contribution to the kind of economy that keeps the next generation in Atlantic Canada.",
+      "We measure success not only in financial returns but in contribution to the kind of economy that keeps the next generation in Atlantic Canada",
     className: "xl:col-span-4",
   },
   {
@@ -36,7 +36,7 @@ const culturePrinciples = [
     icon: Clock,
     title: "Long-Term Thinking",
     detail:
-      "Infrastructure built today shapes opportunities for the next generation.  We design for adaptability, not quarterly performance.",
+      "Infrastructure built today shapes opportunities for the next generation.  We design for adaptability, not quarterly performance",
     className: "xl:col-span-3",
   },
   {
@@ -44,7 +44,7 @@ const culturePrinciples = [
     icon: Leaf,
     title: "Environmental Integrity",
     detail:
-      "We source biomass from certified forestry operations managed for long-term ecosystem health. We pursue carbon-negative production as a technical target & we commit to publishing lifecycle assessments and environmental performance data annually.",
+      "We source biomass from certified forestry operations managed for long-term ecosystem health. We pursue carbon-negative production as a technical target & we commit to publishing lifecycle assessments and environmental performance data annually",
     className: "xl:col-span-3",
   },
 ];
@@ -52,7 +52,7 @@ const culturePrinciples = [
 export const metadata: Metadata = {
   title: "Culture",
   description:
-    "Technology gets us to the table. Trust is what keeps us there. In every partnership we pursue and every community we operate in we earn trust that outlast a single transaction.",
+    "Technology gets us to the table. Trust is what keeps us there. In every partnership we pursue and every community we operate in we earn trust that outlast a single transaction",
 };
 
 export default function CulturePage() {
