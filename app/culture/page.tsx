@@ -112,18 +112,18 @@ export default function CulturePage() {
         <h2 className="text-center font-heading text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl capitalize">
           We would love to hear from you
         </h2>
-        <div className="flex gap-5 justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-5">
           <Link
             href="/contact"
-            className="w-64 text-center text-primary-foreground border border-primary/25 bg-primary px-4 py-2 rounded-full hover:bg-primary/80"
+            className="w-52 text-center text-xs font-bold tracking-wide uppercase text-primary-foreground border border-primary/25 bg-primary px-4 py-3 rounded-full hover:bg-primary/80"
           >
-            Contact us
+            Partner with us
           </Link>
           <Link
-            href="/culture"
-            className="w-[250px] text-center text-primary-foreground border border-primary/25 bg-primary px-4 py-2 rounded-full hover:bg-primary/80"
+            href="/contact"
+            className="w-52 text-center text-xs font-bold tracking-wide uppercase text-primary-foreground border border-primary/25 bg-primary px-4 py-3 rounded-full hover:bg-primary/80"
           >
-            Learn more about our culture
+            Join our team
           </Link>
         </div>
       </section>
