@@ -9,7 +9,20 @@ import {
   type CSSProperties,
 } from "react";
 
-export function NewBrunswickParallax() {
+export type NewBrunswickParallaxProps = {
+  title: string;
+  secondTitle?: string;
+  imageSrc: string;
+  imageAlt: string;
+};
+
+export function NewBrunswickParallax({
+  title,
+  secondTitle,
+  imageSrc,
+  imageAlt,
+}: NewBrunswickParallaxProps) {
+  const secondLine = secondTitle ?? title;
   const sectionRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const [progress, setProgress] = useState(0.5);
@@ -102,8 +115,8 @@ export function NewBrunswickParallax() {
             style={imageStyle}
           >
             <Image
-              src="/media/new-brunswick-roadmap.png"
-              alt="New Brunswick shoreline with autumn trees reflected in still water"
+              src={imageSrc}
+              alt={imageAlt}
               fill
               sizes="100vw"
               className="object-cover lg:object-bottom"
@@ -114,18 +127,16 @@ export function NewBrunswickParallax() {
             <div className="mx-auto w-full max-w-5xl px-4 sm:px-8 lg:px-12">
               <div className="relative min-h-[9rem] sm:min-h-[6.5rem] lg:min-h-[8rem]">
                 <p
-                  className="absolute inset-0 mx-auto flex max-w-[12ch] items-center justify-center text-center font-heading text-[1.2rem] leading-[1.08] text-white drop-shadow-[0_10px_26px_rgba(0,0,0,0.35)] sm:max-w-none sm:whitespace-nowrap sm:text-[2rem] sm:leading-tight lg:text-[2.95rem] lg:leading-[1.03]"
+                  className="absolute inset-0 mx-auto flex max-w-[15ch] items-center justify-center text-center font-heading text-[1.2rem] leading-[1.08] text-white drop-shadow-[0_10px_26px_rgba(0,0,0,0.35)] sm:max-w-none sm:whitespace-nowrap sm:text-[2rem] sm:leading-tight lg:text-[2.95rem] lg:leading-[1.03]"
                   style={firstSentenceStyle}
                 >
-                  We turn Atlantic Canada&apos;s forestry waste into
-                  battery-grade graphite.
+                  {title}
                 </p>
                 <p
                   className="absolute inset-0 mx-auto flex max-w-[15ch] items-center justify-center text-center font-heading text-[1.2rem] leading-[1.08] text-white drop-shadow-[0_10px_26px_rgba(0,0,0,0.35)] sm:max-w-none sm:whitespace-nowrap sm:text-[2rem] sm:leading-tight lg:text-[2.95rem] lg:leading-[1.03]"
                   style={secondSentenceStyle}
                 >
-                  The material powering the electric vehicle revolution made
-                  here, from here.
+                  {secondLine}
                 </p>
               </div>
             </div>

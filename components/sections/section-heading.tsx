@@ -5,6 +5,8 @@ type SectionHeadingProps = {
   title: string;
   intro?: string;
   className?: string;
+  /** Merged onto the title element; use e.g. `normal-case` to override default capitalize. */
+  titleClassName?: string;
 };
 
 export function SectionHeading({
@@ -12,6 +14,7 @@ export function SectionHeading({
   title,
   intro,
   className,
+  titleClassName,
 }: SectionHeadingProps) {
   return (
     <header className={cn("w-full space-y-4", className)}>
@@ -20,7 +23,12 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="font-heading text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl capitalize">
+      <h2
+        className={cn(
+          "font-heading text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl capitalize",
+          titleClassName,
+        )}
+      >
         {title}
       </h2>
       {intro ? (

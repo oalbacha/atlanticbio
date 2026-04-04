@@ -2,24 +2,28 @@ import { SiteHero } from "@/components/site-hero";
 import { MetricGrid } from "@/components/sections/metric-grid";
 import { NewBrunswickParallax } from "@/components/sections/new-brunswick-parallax";
 import { SectionHeading } from "@/components/sections/section-heading";
-import {
-  atlanticCanadaMetrics,
-  homeOpportunityMetrics,
-} from "@/lib/content";
+import { atlanticCanadaMetrics, homeOpportunityMetrics } from "@/lib/content";
 
 const valueDrivers = [
   {
+    title: "Performance parity",
+    detail:
+      "Battery-grade specifications that matches or exceeds conventional natural graphite across key metrics.",
+  },
+  {
+    title: "Cost advantage",
+    detail:
+      "Competitive price from cheaper inputs and lower processing temperatures, not a green premium.",
+  },
+  {
+    title: "Supply chain resilience",
+    detail:
+      "100% North American origin reduces exposure to concentrated overseas processing.",
+  },
+  {
     title: "Lower carbon intensity",
     detail:
-      "70-90% lifecycle carbon reduction versus conventional synthetic graphite pathways.",
-  },
-  {
-    title: "Regional supply resilience",
-    detail: "Reduce exposure to concentrated overseas processing capacity.",
-  },
-  {
-    title: "Traceability",
-    detail: "From certified residue input through finished material delivery.",
+      "70–90% lower lifecycle carbon versus conventional synthetic graphite.",
   },
 ];
 
@@ -37,7 +41,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-4">
           {valueDrivers.map((driver) => (
             <article
               key={driver.title}
@@ -60,12 +64,12 @@ export default function HomePage() {
               materials powering electric vehicles depend on carbon-intensive
               production and concentrated supply chains. At the heart of the
               clean energy transition, the green revolution is built on a
-              fragile foundation. Atlantic BioGraphite converts New Brunswick&apos;s
-              forestry sustainably sourced, certified, and abundant byproducts
-              into battery-grade graphite for lithium-ion anodes. We give OMEs a
-              North American alternative that competes on performance, not just
-              conscience. Built here. From here. For the batteries the world
-              needs next.
+              fragile foundation. Atlantic BioGraphite converts New
+              Brunswick&apos;s forestry sustainably sourced, certified, and
+              abundant byproducts into battery-grade graphite for lithium-ion
+              anodes. We give OMEs a North American alternative that competes on
+              performance, not just conscience. Built here. From here. For the
+              batteries the world needs next.
             </p>
           </blockquote>
         </div>
@@ -80,7 +84,12 @@ export default function HomePage() {
       </section>
 
       <section className="space-y-7">
-        <NewBrunswickParallax />
+        <NewBrunswickParallax
+          title="We turn Atlantic Canada's forestry waste into battery-grade graphite."
+          secondTitle="The material powering the electric vehicle revolution made here, from here."
+          imageSrc="/media/new-brunswick-roadmap.png"
+          imageAlt="New Brunswick shoreline with autumn trees reflected in still water"
+        />
       </section>
 
       <section className="space-y-7">

@@ -13,6 +13,7 @@ export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Story", href: "/story" },
   { label: "Culture", href: "/culture" },
+  { label: "Biographite", href: "/biographite" },
   { label: "Contact", href: "/contact" },
 ];
 
